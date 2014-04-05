@@ -16,7 +16,9 @@ is_osx() {
     return 1
 }
 
+_is_osx=""
 if is_osx; then
+    _is_osx="1"
     readlink="greadlink"
     if ! which $readlink; then
         brew install coreutils
@@ -32,7 +34,7 @@ for fname in `find $script_path -maxdepth 1 -type f -not -name "*.osx"`; do
     fname=`basename $fname`
     outpath="`$readlink -f ~/`/.$fname"
 
-    if [[ -f "$fname".osx ]]; then
+    if [[ $_is_osx && -f "$fname".osx ]]; then
         fname="$fname".osx
     fi
 
@@ -49,13 +51,13 @@ for fname in `find $script_path -maxdepth 1 -type f -not -name "*.osx"`; do
 done
 
 # symlink files in subdirectories to ~/$subdir/
-for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_path"`; do
+for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_path" -not -name ".git"`; do
     cd $dname
     for fname in `find $dname -maxdepth 1 -type f -not -name "*.osx"`; do
         outdir=`$readlink -f ~/${PWD##*/}`
         outpath="$outdir/`basename $fname`"
 
-        if [[ -f "$fname".osx ]]; then
+        if [[ $_is_osx && -f "$fname".osx ]]; then
             fname="$fname".osx
         fi
 
@@ -76,7 +78,7 @@ for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_pat
 done
 
 # setup one more level... this is gross!
-for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_path"`; do
+for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_path" -not -name ".git"`; do
     cd $dname
     basedname="${PWD##*/}"
     for subdname in `find $dname/ -maxdepth 1 -type d -not -wholename "$dname/"`; do
