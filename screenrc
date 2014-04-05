@@ -1,0 +1,24 @@
+defflow         off
+vbell           off
+escape          ^\x
+bind            ^K
+hardstatus      string '%w'
+startup_message off
+termcapinfo     xterm* ti@:te@
+defscrollback   2400
+term            screen-256color
+
+autodetach      on
+#hardcopy ~/.screen
+
+#screen -t vi    0 bash
+#screen -t sql   1 bash
+#screen -t sh    2 bash
+#screen -t log   3 bash
+#screen -t sql   4 bash
+#screen -t data  5 bash
+#screen -t troi  6 bash
+#screen -t sh    7 bash
+#screen -t sh    8 bash
+#screen -t sh    9 bash
+
