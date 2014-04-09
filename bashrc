@@ -105,10 +105,15 @@ export ROOT=$HOME/code
 export PYTHONPATH=$ROOT/python:$ROOT/python/stubs:$HOME/repos
 export PYTHONSTARTUP=~/.pythonrc
 export NODE_PATH=~/tmp/doctorjs/narcissus/lib/:~/tmp/doctorjs/lib/jsctags:~/tmp/doctorjs/lib
-export GOROOT=/usr/lib/go
-export GOPATH=$HOME/code/go
 
-export PATH=$PATH:$HOME/bin:$GOROOT/bin
+if `which go`; then
+    export GOROOT=`go env GOROOT`
+    export GOPATH=$HOME/go
+
+    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
+
+export PATH=$PATH:$HOME/bin
 
 export EDITOR=vi
 export SVN_MERGE=~/bin/mergewrap.py

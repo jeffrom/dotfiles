@@ -250,6 +250,7 @@ autocmd FileType vo_base :colorscheme vo_dark
 
 autocmd BufRead,BufNewFile *.go set filetype=go
 autocmd FileType go compiler go
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 let g:golang_goroot = "/usr/lib/go"
 
 autocmd FileType html,javascript,mustache setlocal shiftwidth=2 tabstop=2
