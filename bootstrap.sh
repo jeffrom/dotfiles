@@ -120,19 +120,21 @@ bundle_path="$HOME/.vim/bundle"
 mkdir -p $bundle_path
 cd $bundle_path
 
-git clone https://github.com/hail2u/vim-css3-syntax.git
-git clone https://github.com/mbbill/echofunc.git
-git clone https://github.com/saltstack/salt-vim.git
-git clone https://github.com/ap/vim-css-color.git
-git clone https://github.com/tpope/vim-fugitive.git
-git clone https://github.com/pangloss/vim-javascript.git
-git clone https://github.com/jelera/vim-javascript-syntax.git
-git clone https://github.com/hynek/vim-python-pep8-indent.git
-git clone https://github.com/tpope/vim-surround.git
-git clone https://github.com/tpope/vim-repeat.git
-git clone https://github.com/ciaranm/inkpot.git
+git clone https://github.com/hail2u/vim-css3-syntax.git 2> /dev/null
+git clone https://github.com/ciaranm/inkpot.git 2> /dev/null
+git clone https://github.com/mbbill/echofunc.git 2> /dev/null
+git clone https://github.com/saltstack/salt-vim.git 2> /dev/null
+git clone https://github.com/ap/vim-css-color.git 2> /dev/null
+git clone https://github.com/tpope/vim-fugitive.git 2> /dev/null
+git clone https://github.com/pangloss/vim-javascript.git 2> /dev/null
+git clone https://github.com/jelera/vim-javascript-syntax.git 2> /dev/null
+git clone https://github.com/hynek/vim-python-pep8-indent.git 2> /dev/null
+git clone https://github.com/tpope/vim-surround.git 2> /dev/null
+git clone https://github.com/tpope/vim-repeat.git 2> /dev/null
+git clone https://github.com/jnwhiteh/vim-golang 2> /dev/null
+git clone git@github.com:Blackrush/vim-gocode.git 2> /dev/null
 
-git clone https://github.com/marijnh/tern_for_vim.git
+git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
 npm install
 cd -
