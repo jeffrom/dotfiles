@@ -1,8 +1,12 @@
 "call pathogen#incubate()
 call pathogen#infect('bundle/{}')
 
+" os x detection
+let s:uname = system("echo -n \"$(uname)\"")
+
 syntax on
 filetype plugin indent on
+set modeline
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -248,10 +252,18 @@ autocmd FileType snippets :let b:notrailing=1
 " fix color scheme for outliner
 autocmd FileType vo_base :colorscheme vo_dark
 
+if s:uname == "Darwin"
+    let g:golang_goroot = "/usr/local/Cellar/go/1.2.1/libexec"
+else
+    let g:golang_goroot = "/usr/lib/go"
+endif
+
+let g:gofmt_command = "goimports"
 autocmd BufRead,BufNewFile *.go set filetype=go
-autocmd FileType go compiler go
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-let g:golang_goroot = "/usr/lib/go"
+autocmd FileType go compiler golang
+autocmd Filetype go set makeprg=go\ build
+" dont gofmt on save
+autocmd FileType go autocmd! BufWritePre <buffer>
 
 autocmd FileType html,javascript,mustache setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript call SetJSOptions()

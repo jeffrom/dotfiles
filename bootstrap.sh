@@ -31,22 +31,23 @@ script_path=`$readlink -f \`dirname $0\``
 
 # symlink the top-level files into dotfiles in ~/
 for fname in `find $script_path -maxdepth 1 -type f -not -name "*.osx"`; do
-    fname=`basename $fname`
-    outpath="`$readlink -f ~/`/.$fname"
+    basefname=`basename $fname`
+    outpath="`$readlink -f ~/`/.$basefname"
 
     if [[ $_is_osx && -f "$fname".osx ]]; then
         fname="$fname".osx
+        basefname="$basefname".osx
     fi
 
     if [[ "$dryrun" ]]; then
         echo "rm -f $outpath"
-        echo "ln -s $script_path/$fname $outpath"
+        echo "ln -s $script_path/$basefname $outpath"
     else
         if [[ -f $outpath ]]; then
             rm -f $outpath
         fi
 
-        ln -s $script_path/$fname $outpath
+        ln -s $script_path/$basefname $outpath
     fi
 done
 
@@ -131,8 +132,8 @@ git clone https://github.com/jelera/vim-javascript-syntax.git 2> /dev/null
 git clone https://github.com/hynek/vim-python-pep8-indent.git 2> /dev/null
 git clone https://github.com/tpope/vim-surround.git 2> /dev/null
 git clone https://github.com/tpope/vim-repeat.git 2> /dev/null
-git clone https://github.com/jnwhiteh/vim-golang 2> /dev/null
 git clone git@github.com:Blackrush/vim-gocode.git 2> /dev/null
+git clone https://github.com/rjohnsondev/vim-compiler-go.git 2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim

@@ -122,9 +122,9 @@ export EDITOR=vi
 export SVN_MERGE=~/bin/mergewrap.py
 #export TERM=xterm-256color
 export GREP_OPTIONS="--exclude-dir=\.svn --exclude=TAGS --exclude=tags --exclude=*.swp"
-export GOROOT=`go env GOROOT`
+_goroot=`go env GOROOT`
 export GOPATH=$HOME/go
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$GOPATH/bin:$GOROOT/bin
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$GOPATH/bin:$_goroot/bin
 
 # timelog
 export TIMELOG="~/doc/ledger/timelog"

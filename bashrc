@@ -106,11 +106,12 @@ export PYTHONPATH=$ROOT/python:$ROOT/python/stubs:$HOME/repos
 export PYTHONSTARTUP=~/.pythonrc
 export NODE_PATH=~/tmp/doctorjs/narcissus/lib/:~/tmp/doctorjs/lib/jsctags:~/tmp/doctorjs/lib
 
-if `which go`; then
-    export GOROOT=`go env GOROOT`
+go=`which go`
+if [[ "$go" ]]; then
     export GOPATH=$HOME/go
+    _goroot=`$go env GOROOT`
 
-    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+    export PATH=$PATH:$_goroot/bin:$GOPATH/bin
 fi
 
 export PATH=$PATH:$HOME/bin
