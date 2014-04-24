@@ -134,6 +134,7 @@ git clone https://github.com/tpope/vim-surround.git 2> /dev/null
 git clone https://github.com/tpope/vim-repeat.git 2> /dev/null
 git clone git@github.com:Blackrush/vim-gocode.git 2> /dev/null
 git clone https://github.com/rjohnsondev/vim-compiler-go.git 2> /dev/null
+git clone https://github.com/wavded/vim-stylus.git 2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
