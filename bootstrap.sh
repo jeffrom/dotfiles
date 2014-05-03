@@ -113,9 +113,11 @@ if [[ "$dryrun" ]]; then
     exit
 fi
 
+mkdir -p ~/.vim/backup
+
 # install vim bundles
 mkdir -p ~/.vim/autoload ~/.vim/bundle
-curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+curl -LSso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 bundle_path="$HOME/.vim/bundle"
 mkdir -p $bundle_path
