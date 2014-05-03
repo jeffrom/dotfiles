@@ -124,7 +124,7 @@ export GREP_OPTIONS="--exclude-dir=\.svn --exclude=TAGS --exclude=tags --exclude
 
 #alias less=$HOME/bin/someless
 alias diff='diff -u'
-alias git='git --no-pager'
+#alias git='git --no-pager'
 
 # mail
 #MAIL=/var/spool/mail/`whoami` && export MAIL

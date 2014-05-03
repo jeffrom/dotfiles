@@ -265,7 +265,7 @@ autocmd Filetype go set makeprg=go\ build
 " dont gofmt on save
 autocmd FileType go autocmd! BufWritePre <buffer>
 
-autocmd FileType html,javascript,mustache setlocal shiftwidth=2 tabstop=2
+autocmd FileType html,javascript,mustache,stylus setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript call SetJSOptions()
 
 autocmd BufRead,BufNewFile ~/doc/*.txt,~/doc/*/*.txt call TextSetup()
