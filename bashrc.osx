@@ -137,36 +137,5 @@ alias gcal='while :; do clear; gcalcli --calendar=jeff --width=24 calw 2; gcalcl
 # for sup
 stty dsusp undef
 
-# mail
-#MAIL=/var/spool/mail/`whoami` && export MAIL
-#
-## gnupg
-#ps cax | grep gpg-agent > /dev/null
-#if [ ! $? -eq 0 ]; then
-#    gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
-#fi
-#
-#_export_gpg_info() {
-#    if [ -f "${HOME}/.gpg-agent-info" ]; then
-#        . "${HOME}/.gpg-agent-info"
-#        export GPG_AGENT_INFO
-#        export SSH_AUTH_SOCK
-#        export SSH_AGENT_PID
-#    fi
-#
-#    if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-#        echo export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS" >> $HOME/.gpg-agent-info
-#    fi
-#}
-#_export_gpg_info
-#
-#PROMPT_COMMAND=_export_gpg_info
-#
-##wrap mutt w/ gpg for password safety
-#alias mutt=$HOME/bin/wrapmutt
-#
-## hack for screen to work w/ gpgp
-#_ssh_auth_save() {
-#    ln -sf "$SSH_AUTH_SOCK" "$HOME/.screen/ssh-auth-sock.$HOSTNAME"
-#}
-#alias screen='_ssh_auth_save ; export HOSTNAME=$(hostname) ; screen'
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+

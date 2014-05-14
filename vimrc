@@ -7,8 +7,10 @@ let s:uname = system("echo -n \"$(uname)\"")
 syntax on
 filetype plugin indent on
 set modeline
-set tabstop=4
-set shiftwidth=4
+"set tabstop=4
+"set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set nosmartindent  " plugin indent on seems to do a better job
 set hidden
@@ -367,3 +369,15 @@ map <leader>m :Make<CR>
 map <silent> <leader>M :call CleanMustaches()<CR>
 map <silent> <leader>j :call ReadJson()<CR>
 
+" ctrlp.vim
+" XXX this mapping clashes with echofunc right now
+silent! nmap <silent> <Leader>f :CtrlP<CR>
+nnoremap <leader>F :CtrlPClearAllCaches<CR>:CtrlP<CR>
+set wildignore+=public/assets/**,build/**,vendor/plugins/**,vendor/linked_gems/**,vendor/gems/**,vendor/rails/**,vendor/ruby/**,vendor/cache/**,Libraries/**,coverage/**
+let g:ctrlp_max_height=20
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v(\.git|\.yardoc|log|tmp)$',
+  \ 'file': '\v\.(so|dat|DS_Store|png|gif|jpg|jpeg)$'
+  \ }
+let g:ctrlp_working_path_mode = 'ra'

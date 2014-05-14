@@ -138,6 +138,7 @@ git clone git@github.com:Blackrush/vim-gocode.git 2> /dev/null
 git clone https://github.com/rjohnsondev/vim-compiler-go.git 2> /dev/null
 git clone https://github.com/wavded/vim-stylus.git 2> /dev/null
 git clone https://github.com/mxw/vim-jsx.git 2> /dev/null
+git clone https://github.com/kien/ctrlp.vim.git 2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
