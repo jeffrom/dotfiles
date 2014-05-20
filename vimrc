@@ -274,7 +274,7 @@ autocmd BufRead,BufNewFile ~/doc/*.txt,~/doc/*/*.txt call TextSetup()
 "autocmd BufRead,BufNewFile *.sls set filetype=yaml
 
 " Delete trailing whitespace on save
-autocmd BufWritePre * :call StripTrailingWhitespace()
+"autocmd BufWritePre * :call StripTrailingWhitespace()
 
 " In order to retab tabs back to 4 whitespaces:
 " 1,$ retab! 8  - convert tab to 8 whitespaces

@@ -55,6 +55,10 @@ done
 for dname in `find $script_path -maxdepth 1 -type d -not -wholename "$script_path" -not -name ".git"`; do
     cd $dname
     for fname in `find $dname -maxdepth 1 -type f -not -name "*.osx"`; do
+        if [[ "$fname" == "manualsetup" ]]; then
+          continue
+        fi
+
         outdir=`$readlink -f ~/${PWD##*/}`
         outpath="$outdir/`basename $fname`"
 
@@ -114,6 +118,11 @@ if [[ "$dryrun" ]]; then
 fi
 
 mkdir -p ~/.vim/backup
+
+# disable os x animations
+if is_osx; then
+    defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
+fi
 
 # install vim bundles
 mkdir -p ~/.vim/autoload ~/.vim/bundle

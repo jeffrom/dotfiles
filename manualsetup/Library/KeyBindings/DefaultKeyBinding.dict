@@ -1,0 +1,38 @@
+/* put this file in ~/Library/KeyBindings */
+{
+    "^w" = "deleteWordBackward:";
+    "^l" = "centerSelectionInVisibleArea:";
+    /* These two only work w/ another plugin that doesn't work in lion */
+    "^s" = "ISIM_incrementalSearch:";
+    "^r" = "ISIM_reverseIncrementalSearch:";
+
+    "^g" = "abort:";
+    "~f" = "moveWordForward:";
+    "~b" = "moveWordBackward:";
+    "~<" = "moveToBeginningOfDocument:";
+    "~>" = "moveToEndOfDocument:";
+    "~v" = "pageUp:";
+    "~/" = "complete:";
+    "~h" = "complete:";
+    "~c" = ( "capitalizeWord:",
+                 "moveForward:",
+                 "moveForward:");
+    "~u" = ( "uppercaseWord:",
+                 "moveForward:",
+                 "moveForward:");
+    "~l" = ( "lowercaseWord:",
+                 "moveForward:",
+                 "moveForward:");
+    "~d" = "deleteWordForward:";
+
+    "^x" = {
+        "u" = "undo:";
+        "k" = "performClose:";
+        "^f" = "openDocument:";
+        "^x" = "swapWithMark:";
+        "^m" = "selectToMark:";
+        "^s" = "saveDocument:";
+        "^w" = "saveDocumentAs:";
+        };
+}
+
