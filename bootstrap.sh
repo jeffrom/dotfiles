@@ -124,6 +124,7 @@ if is_osx; then
     defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO
 fi
 
+
 # install vim bundles
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -LSso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
@@ -132,22 +133,26 @@ bundle_path="$HOME/.vim/bundle"
 mkdir -p $bundle_path
 cd $bundle_path
 
-git clone https://github.com/hail2u/vim-css3-syntax.git 2> /dev/null
-git clone https://github.com/ciaranm/inkpot.git 2> /dev/null
-git clone https://github.com/mbbill/echofunc.git 2> /dev/null
-git clone https://github.com/saltstack/salt-vim.git 2> /dev/null
-git clone https://github.com/ap/vim-css-color.git 2> /dev/null
-git clone https://github.com/tpope/vim-fugitive.git 2> /dev/null
-git clone https://github.com/pangloss/vim-javascript.git 2> /dev/null
+git clone https://github.com/hail2u/vim-css3-syntax.git       2> /dev/null
+git clone https://github.com/ciaranm/inkpot.git               2> /dev/null
+git clone https://github.com/mbbill/echofunc.git              2> /dev/null
+git clone https://github.com/saltstack/salt-vim.git           2> /dev/null
+git clone https://github.com/ap/vim-css-color.git             2> /dev/null
+git clone https://github.com/tpope/vim-fugitive.git           2> /dev/null
+git clone https://github.com/pangloss/vim-javascript.git      2> /dev/null
 git clone https://github.com/jelera/vim-javascript-syntax.git 2> /dev/null
 git clone https://github.com/hynek/vim-python-pep8-indent.git 2> /dev/null
-git clone https://github.com/tpope/vim-surround.git 2> /dev/null
-git clone https://github.com/tpope/vim-repeat.git 2> /dev/null
-git clone git@github.com:Blackrush/vim-gocode.git 2> /dev/null
-git clone https://github.com/rjohnsondev/vim-compiler-go.git 2> /dev/null
-git clone https://github.com/wavded/vim-stylus.git 2> /dev/null
-git clone https://github.com/mxw/vim-jsx.git 2> /dev/null
-git clone https://github.com/kien/ctrlp.vim.git 2> /dev/null
+git clone https://github.com/tpope/vim-surround.git           2> /dev/null
+git clone https://github.com/tpope/vim-repeat.git             2> /dev/null
+git clone git@github.com:Blackrush/vim-gocode.git             2> /dev/null
+git clone https://github.com/rjohnsondev/vim-compiler-go.git  2> /dev/null
+git clone https://github.com/wavded/vim-stylus.git            2> /dev/null
+git clone https://github.com/mxw/vim-jsx.git                  2> /dev/null
+git clone https://github.com/kien/ctrlp.vim.git               2> /dev/null
+git clone https://github.com/mikewest/vimroom.git             2> /dev/null
+git clone https://github.com/tpope/vim-rails.git              2> /dev/null
+git clone https://github.com/tpope/vim-bundler.git            2> /dev/null
+git clone https://github.com/itchyny/calendar.vim.git         2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
