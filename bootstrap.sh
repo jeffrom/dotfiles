@@ -135,7 +135,7 @@ cd $bundle_path
 
 git clone https://github.com/hail2u/vim-css3-syntax.git       2> /dev/null
 git clone https://github.com/ciaranm/inkpot.git               2> /dev/null
-git clone https://github.com/mbbill/echofunc.git              2> /dev/null
+#git clone https://github.com/mbbill/echofunc.git              2> /dev/null
 git clone https://github.com/saltstack/salt-vim.git           2> /dev/null
 git clone https://github.com/ap/vim-css-color.git             2> /dev/null
 git clone https://github.com/tpope/vim-fugitive.git           2> /dev/null
@@ -153,6 +153,9 @@ git clone https://github.com/mikewest/vimroom.git             2> /dev/null
 git clone https://github.com/tpope/vim-rails.git              2> /dev/null
 git clone https://github.com/tpope/vim-bundler.git            2> /dev/null
 git clone https://github.com/itchyny/calendar.vim.git         2> /dev/null
+git clone https://github.com/sjl/gundo.vim.git                2> /dev/null
+git clone https://github.com/tpope/vim-commentary.git         2> /dev/null
+git clone https://github.com/vim-scripts/greplace.vim.git     2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim

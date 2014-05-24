@@ -14,7 +14,13 @@ set shiftwidth=2
 set expandtab
 set nosmartindent  " plugin indent on seems to do a better job
 set hidden
-colorscheme inkpot
+set ruler
+
+" color scheme
+let g:seoul256_background = 233
+"colorscheme inkpot
+"colorscheme seoul256
+
 runtime macros/matchit.vim
 " because os x is dumb
 set backspace=indent,eol,start
@@ -36,6 +42,14 @@ endif
 
 " stay three lines from the bottom
 set scrolloff=3
+
+fun! SetColorScheme()
+  if exists('b:noSeoul256')
+    colorscheme inkpot
+    return
+  endif
+  colorscheme seoul256
+endfun
 
 fun! SetJSOptions()
     map <buffer> <silent><leader>d :TernDef<CR>
@@ -154,7 +168,7 @@ fun! CleanMustaches()
     %s/{{js>\([a-z_]*\)}}/{{js> \1 }}/ge
 endfun
 
-if filereadable($HOME . '/.vim/plugin/echofunc.vim')
+if filereadable($HOME . '/.vim/bundle/echofunc.vim')
     " some stuff to smartly show echofunc
     fun! EchoFuncStatusLineOn()
         " this creates basically a default statusline
@@ -250,6 +264,10 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skeleton.%:e
 
 " Don't delete trailing whitespace for these filetypes
 autocmd FileType snippets :let b:notrailing=1
+
+" Don't load seoul256 for these filetypes
+autocmd FileType gitcommit :let b:noSeoul256=1
+autocmd FileType * :call SetColorScheme()
 
 " fix color scheme for outliner
 autocmd FileType vo_base :colorscheme vo_dark
@@ -381,3 +399,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(so|dat|DS_Store|png|gif|jpg|jpeg)$'
   \ }
 let g:ctrlp_working_path_mode = 'ra'
+
+if exists(":GundoToggle")
+  map <silent> <leader>u :GundoToggle<CR>
+endif

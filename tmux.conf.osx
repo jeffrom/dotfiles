@@ -5,24 +5,13 @@ unbind-key C-b
 #bind-key 'C-\' last-window
 
 # gotta litter up the conf with these to function as hooks :/
-bind-key 'C-\' last-window \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
+bind-key 'C-\' last-window 
 
 bind A command-prompt 'rename-window %%'
 # almost there
 bind w display-message #(awk \'{ printf \" %%s \" $2, $1 }\' <(tmux list-windows))
-bind l choose-window "select-window -t '%%' \; run-shell \"~/repos/notiflyer/notifly.py plugin tmux switch\""
+bind l choose-window "select-window -t '%%'"
 set-option -g display-time 4000
-
-bind 0 select-window -t 0 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 1 select-window -t 1 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 2 select-window -t 2 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 3 select-window -t 3 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 4 select-window -t 4 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 5 select-window -t 5 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 6 select-window -t 6 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 7 select-window -t 7 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 8 select-window -t 8 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind 9 select-window -t 9 \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
 
 # search window names
 bind-key / command-prompt "find-window %1"
@@ -52,8 +41,8 @@ bind-key -r C-h select-window -t :-
 bind-key -r C-l select-window -t :+
 bind '\' select-pane -t :.+
 
-bind n select-window -t :+ \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
-bind p select-window -t :- \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
+bind n select-window -t :+ 
+bind p select-window -t :- 
 
 bind v split-window -h
 
@@ -94,9 +83,9 @@ set-option -g visual-activity on
 bind m set-window-option monitor-activity on
 bind M set-window-option monitor-activity off
 
-bind-key -n 'M-`' next \; run-shell "~/repos/notiflyer/notifly.py plugin tmux switch"
+bind-key -n 'M-`' next 
 
-bind-key N run-shell "notifly plugin tmux new_window"
+#bind-key N run-shell "notifly plugin tmux new_window"
 
 set-option -g status-interval 5
 set -g status-bg black
