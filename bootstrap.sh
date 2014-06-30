@@ -156,6 +156,7 @@ git clone https://github.com/itchyny/calendar.vim.git         2> /dev/null
 git clone https://github.com/sjl/gundo.vim.git                2> /dev/null
 git clone https://github.com/tpope/vim-commentary.git         2> /dev/null
 git clone https://github.com/vim-scripts/greplace.vim.git     2> /dev/null
+git clone https://github.com/scrooloose/syntastic.git         2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim

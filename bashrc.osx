@@ -127,7 +127,7 @@ export SVN_MERGE=~/bin/mergewrap.py
 #export TERM=xterm-256color
 export GREP_OPTIONS="--exclude-dir=\.svn --exclude=TAGS --exclude=tags --exclude=*.swp"
 _goroot=`go env GOROOT`
-export GOPATH=$HOME/go
+export GOPATH=$HOME/repos/metroid
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$GOPATH/bin:$_goroot/bin
 
 # timelog
@@ -135,6 +135,7 @@ export TIMELOG="~/doc/ledger/timelog"
 
 #alias less=$HOME/bin/someless
 alias diff='diff -u'
+alias vim=/usr/local/bin/vim
 alias vi=vim
 alias gcal='while :; do clear; gcalcli --calendar=jeff --width=24 calw 2; gcalcli --calendar=jeff agenda; sleep 300; done'
 
@@ -142,4 +143,5 @@ alias gcal='while :; do clear; gcalcli --calendar=jeff --width=24 calw 2; gcalcl
 stty dsusp undef
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
+export UV_METROID_DIR="/Users/jeff/repos/metroid"
+export UV_RAILS_DIR="/Users/jeff/repos/uservoice"

@@ -15,6 +15,7 @@ set expandtab
 set nosmartindent  " plugin indent on seems to do a better job
 set hidden
 set ruler
+let g:netrw_banner=0
 
 " color scheme
 let g:seoul256_background = 233
@@ -57,7 +58,7 @@ fun! SetJSOptions()
     map <buffer> <silent>K :TernType<CR>
     map <buffer> <C-]> :TernDef<CR>
     let javascript_ignore_javaScriptdoc = 1
-    "let g:javascript_conceal = 1
+    " let g:javascript_conceal = 1
 endfun
 
 fun! TextSetup()
@@ -160,12 +161,12 @@ endfun
 
 " clean up mustaches
 fun! CleanMustaches()
-    %s/{{\([a-z_]*\)}}/{{ \1 }}/ge
-    %s/{{#\([a-z_]*\)}}/{{# \1 }}/ge
-    %s/{{\/\([a-z_]*\)}}/{{\/ \1 }}/ge
-    %s/{{\^\([a-z_]*\)}}/{{^ \1 }}/ge
-    %s/{{>\([a-z_]*\)}}/{{> \1 }}/ge
-    %s/{{js>\([a-z_]*\)}}/{{js> \1 }}/ge
+    %s/{{\([a-z_\.]*\)}}/{{ \1 }}/ge
+    %s/{{#\([a-z_\.]*\)}}/{{# \1 }}/ge
+    %s/{{\/\([a-z_\.]*\)}}/{{\/ \1 }}/ge
+    %s/{{\^\([a-z_\.]*\)}}/{{^ \1 }}/ge
+    %s/{{>\([a-z_\.]*\)}}/{{> \1 }}/ge
+    %s/{{js>\([a-z_\.]*\)}}/{{js> \1 }}/ge
 endfun
 
 if filereadable($HOME . '/.vim/bundle/echofunc.vim')
@@ -273,7 +274,7 @@ autocmd FileType * :call SetColorScheme()
 autocmd FileType vo_base :colorscheme vo_dark
 
 if s:uname == "Darwin"
-    let g:golang_goroot = "/usr/local/Cellar/go/1.2.1/libexec"
+    let g:golang_goroot = "/usr/local/Cellar/go/1.2.2/libexec"
 else
     let g:golang_goroot = "/usr/lib/go"
 endif
@@ -285,6 +286,11 @@ autocmd Filetype go set makeprg=go\ build
 " dont gofmt on save
 autocmd FileType go autocmd! BufWritePre <buffer>
 
+" da fuk
+autocmd BufRead,BufNewFile *.rb set filetype=ruby
+
+autocmd BufRead,BufNewFile *.json set filetype=javascript
+
 autocmd FileType html,javascript,mustache,stylus setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript call SetJSOptions()
 
@@ -292,7 +298,7 @@ autocmd BufRead,BufNewFile ~/doc/*.txt,~/doc/*/*.txt call TextSetup()
 "autocmd BufRead,BufNewFile *.sls set filetype=yaml
 
 " Delete trailing whitespace on save
-"autocmd BufWritePre * :call StripTrailingWhitespace()
+autocmd BufWritePre * :call StripTrailingWhitespace()
 
 " In order to retab tabs back to 4 whitespaces:
 " 1,$ retab! 8  - convert tab to 8 whitespaces
@@ -384,6 +390,7 @@ autocmd FileType python call SetupPython()
 command! Make call MakeStuff()
 map <leader>m :Make<CR>
 
+command! E :Explore
 map <silent> <leader>M :call CleanMustaches()<CR>
 map <silent> <leader>j :call ReadJson()<CR>
 
@@ -400,6 +407,7 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_working_path_mode = 'ra'
 
-if exists(":GundoToggle")
-  map <silent> <leader>u :GundoToggle<CR>
-endif
+map <silent> <leader>g :GundoToggle<CR>
+
+let g:syntastic_disabled_filetypes=['html']
+let g:syntastic_html_checkers=['']

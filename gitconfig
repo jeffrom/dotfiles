@@ -28,6 +28,8 @@
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}.. && echo'
     standup = "!git log --since yesterday --author `git config user.email`"
+    recent = "!gitrecent"
+    grep-refs = !sh -c 'git grep "$0" "$@" "$(git for-each-ref --format=\"%(refname)\"" refs/heads)'
 [push]
     default = tracking
 
