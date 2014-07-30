@@ -144,8 +144,6 @@ git clone https://github.com/jelera/vim-javascript-syntax.git 2> /dev/null
 git clone https://github.com/hynek/vim-python-pep8-indent.git 2> /dev/null
 git clone https://github.com/tpope/vim-surround.git           2> /dev/null
 git clone https://github.com/tpope/vim-repeat.git             2> /dev/null
-git clone git@github.com:Blackrush/vim-gocode.git             2> /dev/null
-git clone https://github.com/rjohnsondev/vim-compiler-go.git  2> /dev/null
 git clone https://github.com/wavded/vim-stylus.git            2> /dev/null
 git clone https://github.com/mxw/vim-jsx.git                  2> /dev/null
 git clone https://github.com/kien/ctrlp.vim.git               2> /dev/null
@@ -157,6 +155,10 @@ git clone https://github.com/sjl/gundo.vim.git                2> /dev/null
 git clone https://github.com/tpope/vim-commentary.git         2> /dev/null
 git clone https://github.com/vim-scripts/greplace.vim.git     2> /dev/null
 git clone https://github.com/scrooloose/syntastic.git         2> /dev/null
+git clone https://github.com/SirVer/ultisnips.git             2> /dev/null
+git clone https://github.com/honza/vim-snippets.git           2> /dev/null
+git clone https://github.com/fatih/vim-go.git                 2> /dev/null
+git clone https://github.com/majutsushi/tagbar.git            2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
