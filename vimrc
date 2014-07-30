@@ -4,7 +4,7 @@ call pathogen#infect('bundle/{}')
 " os x detection
 let s:uname = system("echo -n \"$(uname)\"")
 
-syntax on
+syntax enable
 filetype plugin indent on
 set modeline
 "set tabstop=4
@@ -15,6 +15,7 @@ set expandtab
 set nosmartindent  " plugin indent on seems to do a better job
 set hidden
 set ruler
+set concealcursor="nc"
 let g:netrw_banner=0
 
 " color scheme
@@ -58,6 +59,9 @@ fun! SetJSOptions()
     map <buffer> <silent>K :TernType<CR>
     map <buffer> <C-]> :TernDef<CR>
     let javascript_ignore_javaScriptdoc = 1
+    setlocal conceallevel=2 concealcursor=nc
+    let g:syntax_js=['function']
+    syntax enable
     " let g:javascript_conceal = 1
 endfun
 
@@ -267,7 +271,7 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skeleton.%:e
 autocmd FileType snippets :let b:notrailing=1
 
 " Don't load seoul256 for these filetypes
-autocmd FileType gitcommit :let b:noSeoul256=1
+autocmd FileType gitcommit,conf :let b:noSeoul256=1
 autocmd FileType * :call SetColorScheme()
 
 " fix color scheme for outliner
@@ -281,10 +285,22 @@ endif
 
 let g:gofmt_command = "goimports"
 autocmd BufRead,BufNewFile *.go set filetype=go
-autocmd FileType go compiler golang
-autocmd Filetype go set makeprg=go\ build
+" autocmd FileType go compiler golang
+" autocmd Filetype go set makeprg=go\ build
 " dont gofmt on save
-autocmd FileType go autocmd! BufWritePre <buffer>
+" autocmd FileType go autocmd! BufWritePre <buffer>
+" autocmd FileType go map <buffer> <silent>K :Godoc<CR>
+
+au FileType go nmap <leader>gi <Plug>(go-info)
+au FileType go nmap <leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>d <Plug>(go-def)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 
 " da fuk
 autocmd BufRead,BufNewFile *.rb set filetype=ruby
@@ -409,5 +425,37 @@ let g:ctrlp_working_path_mode = 'ra'
 
 map <silent> <leader>g :GundoToggle<CR>
 
+nmap <F8> :TagbarToggle<CR>
+
 let g:syntastic_disabled_filetypes=['html']
 let g:syntastic_html_checkers=['']
+" g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"," proprietary attribute \"ui-| 63
+" } "," proprietary attribute \"translate"," proprietary attribute "\"uv-","<uv-"]
+
+" highlight syntax group under cursor
+" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+"       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+"       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:UltiSnipsEditSplit="vertical"
+
+" js formatting
+nnoremap <silent> <leader>e :call JSFormat()<cr>
+vnoremap <silent> <leader>e :! esformatter<CR>
+
+function! JSFormat()
+  " Preparation: save last search, and cursor position.
+  let l:win_view = winsaveview()
+  let l:last_search = getreg('/')
+
+  " call esformatter with the contents form and cleanup the extra newline
+  execute ":%!~/.vim/bin/js-format.sh"
+  if v:shell_error
+    echoerr 'format script failed'
+    undo
+    return 0
+  endif
+  " Clean up: restore previous search history, and cursor position
+  call winrestview(l:win_view)
+  call setreg('/', l:last_search)
+endfunction
