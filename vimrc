@@ -271,7 +271,7 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skeleton.%:e
 autocmd FileType snippets :let b:notrailing=1
 
 " Don't load seoul256 for these filetypes
-autocmd FileType gitcommit,conf :let b:noSeoul256=1
+autocmd FileType gitcommit,gitrebase,conf :let b:noSeoul256=1
 autocmd FileType * :call SetColorScheme()
 
 " fix color scheme for outliner
@@ -295,7 +295,7 @@ au FileType go nmap <leader>gi <Plug>(go-info)
 au FileType go nmap <leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>gr <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>d <Plug>(go-def)
@@ -429,8 +429,7 @@ nmap <F8> :TagbarToggle<CR>
 
 let g:syntastic_disabled_filetypes=['html']
 let g:syntastic_html_checkers=['']
-" g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"," proprietary attribute \"ui-| 63
-" } "," proprietary attribute \"translate"," proprietary attribute "\"uv-","<uv-"]
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " proprietary attribute \"uv-", " proprietary attribute \"ui-"]
 
 " highlight syntax group under cursor
 " map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'

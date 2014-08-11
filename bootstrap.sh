@@ -159,6 +159,7 @@ git clone https://github.com/SirVer/ultisnips.git             2> /dev/null
 git clone https://github.com/honza/vim-snippets.git           2> /dev/null
 git clone https://github.com/fatih/vim-go.git                 2> /dev/null
 git clone https://github.com/majutsushi/tagbar.git            2> /dev/null
+git clone https://github.com/jiangmiao/auto-pairs.git         2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim
