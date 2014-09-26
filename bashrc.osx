@@ -118,14 +118,14 @@ if [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.b
 fi
 
 # env vars
-export ROOT=$HOME/code
+export ROOT=$HOME/repos
 export PYTHONPATH=$ROOT/python:$ROOT/python/stubs:.
 export PYTHONSTARTUP=~/.pythonrc
 export NODE_PATH=~/tmp/doctorjs/narcissus/lib/:~/tmp/doctorjs/lib/jsctags:~/tmp/doctorjs/lib
 export EDITOR=vi
 export SVN_MERGE=~/bin/mergewrap.py
 #export TERM=xterm-256color
-export GREP_OPTIONS="--exclude-dir=\.svn --exclude-dir=\.git --exclude=*.min.js --exclude=TAGS --exclude=tags --exclude=*.swp"
+export GREP_OPTIONS="--exclude-dir=\.svn --exclude-dir=\.git --exclude=*.min.js --exclude=TAGS --exclude=tags --exclude=*.swp -I"
 _goroot=`go env GOROOT`
 export GOPATH=$HOME/repos/metroid
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$GOPATH/bin:$_goroot/bin
@@ -145,6 +145,7 @@ stty dsusp undef
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export UV_METROID_DIR="/Users/jeff/repos/metroid"
 export UV_RAILS_DIR="/Users/jeff/repos/uservoice"
+export UV_SAMUS_DIR="/Users/jeff/repos/samus"
 
 eval "$(gulp --completion=bash)"
 

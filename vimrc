@@ -442,6 +442,15 @@ let g:UltiSnipsEditSplit="vertical"
 nnoremap <silent> <leader>e :call JSFormat()<cr>
 vnoremap <silent> <leader>e :! esformatter<CR>
 
+autocmd FileType go map <silent><buffer> <F5> :Make<CR>
+
+
+" for ftplugin/
+" if exists('g:Make_loaded')
+"   map <buffer> <F5> :Make<CR>
+"   imap <buffer> <F5> <ESC>:Make<CR>
+" endif
+
 function! JSFormat()
   " Preparation: save last search, and cursor position.
   let l:win_view = winsaveview()
