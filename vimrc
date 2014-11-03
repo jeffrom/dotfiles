@@ -283,6 +283,12 @@ else
     let g:golang_goroot = "/usr/lib/go"
 endif
 
+" ngdocs
+autocmd BufRead,BufNewFile *.ngdoc set filetype=markdown
+
+" Vagrantfile
+autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+
 let g:gofmt_command = "goimports"
 autocmd BufRead,BufNewFile *.go set filetype=go
 " autocmd FileType go compiler golang
@@ -445,6 +451,9 @@ vnoremap <silent> <leader>e :! esformatter<CR>
 autocmd FileType go map <silent><buffer> <F5> :Make<CR>
 
 
+" vim-javascript-libraries
+" let g:used_javascript_libs = 'underscore,backbone'
+
 " for ftplugin/
 " if exists('g:Make_loaded')
 "   map <buffer> <F5> :Make<CR>
@@ -467,3 +476,10 @@ function! JSFormat()
   call winrestview(l:win_view)
   call setreg('/', l:last_search)
 endfunction
+
+" airline
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline_theme = 'simple'
+let g:airline#extensions#tagbar#enabled = 0
+" set fillchars+=stl:\ ,stlnc:\
