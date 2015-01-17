@@ -165,7 +165,8 @@ git clone https://github.com/majutsushi/tagbar.git            2> /dev/null
 git clone https://github.com/jiangmiao/auto-pairs.git         2> /dev/null
 git clone https://github.com/rking/ag.vim.git                 2> /dev/null
 git clone https://github.com/vshih/vim-make.git               2> /dev/null
-git clone https://github.com/bling/vim-airline.git            2> /dev/null
+git clone https://github.com/mtth/scratch.vim.git             2> /dev/null
+git clone git@github.com:facebook/vim-flow.git                2> /dev/null
 
 git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
 cd tern_for_vim

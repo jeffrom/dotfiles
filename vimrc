@@ -289,7 +289,8 @@ autocmd BufRead,BufNewFile *.ngdoc set filetype=markdown
 " Vagrantfile
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
-let g:gofmt_command = "goimports"
+" let g:gofmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 autocmd BufRead,BufNewFile *.go set filetype=go
 " autocmd FileType go compiler golang
 " autocmd Filetype go set makeprg=go\ build
@@ -312,6 +313,7 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 autocmd BufRead,BufNewFile *.rb set filetype=ruby
 
 autocmd BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile .jshintrc set filetype=javascript
 
 autocmd FileType html,javascript,mustache,stylus setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript call SetJSOptions()
@@ -450,6 +452,8 @@ vnoremap <silent> <leader>e :! esformatter<CR>
 
 autocmd FileType go map <silent><buffer> <F5> :Make<CR>
 
+nnoremap <silent> <leader>x :Scratch<CR>
+
 
 " vim-javascript-libraries
 " let g:used_javascript_libs = 'underscore,backbone'
@@ -477,9 +481,12 @@ function! JSFormat()
   call setreg('/', l:last_search)
 endfunction
 
+" vim-flow
+let g:flow#enable = 0
+
 " airline
-let g:airline_powerline_fonts = 1
-set laststatus=2
-let g:airline_theme = 'simple'
-let g:airline#extensions#tagbar#enabled = 0
+" let g:airline_powerline_fonts = 1
+" set laststatus=2
+" let g:airline_theme = 'simple'
+" let g:airline#extensions#tagbar#enabled = 0
 " set fillchars+=stl:\ ,stlnc:\

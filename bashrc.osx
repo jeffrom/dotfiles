@@ -127,7 +127,7 @@ export SVN_MERGE=~/bin/mergewrap.py
 #export TERM=xterm-256color
 export GREP_OPTIONS="--exclude-dir=\.svn --exclude-dir=\.git --exclude=*.min.js --exclude=TAGS --exclude=tags --exclude=*.swp -I"
 _goroot=`go env GOROOT`
-export GOPATH=$HOME/repos/metroid
+export GOPATH=$HOME/go
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin:$GOPATH/bin:$_goroot/bin
 
 # timelog
