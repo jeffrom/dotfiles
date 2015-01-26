@@ -12,7 +12,7 @@
 (define-key comint-mode-map [down] 'comint-next-matching-input-from-input)
 (define-key comint-mode-map [up] 'comint-previous-matching-input-from-input)
 
-(require 'psvn)
+; (require 'psvn)
 (setq svn-status-verbose nil)
 
 ;;will display function prototypes in c

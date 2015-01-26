@@ -313,6 +313,7 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 autocmd BufRead,BufNewFile *.rb set filetype=ruby
 
 autocmd BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile *.html set filetype=html
 autocmd BufRead,BufNewFile .jshintrc set filetype=javascript
 
 autocmd FileType html,javascript,mustache,stylus setlocal shiftwidth=2 tabstop=2
@@ -456,7 +457,7 @@ nnoremap <silent> <leader>x :Scratch<CR>
 
 
 " vim-javascript-libraries
-" let g:used_javascript_libs = 'underscore,backbone'
+let g:used_javascript_libs = 'angularjs,underscore,backbone'
 
 " for ftplugin/
 " if exists('g:Make_loaded')
@@ -490,3 +491,10 @@ let g:flow#enable = 0
 " let g:airline_theme = 'simple'
 " let g:airline#extensions#tagbar#enabled = 0
 " set fillchars+=stl:\ ,stlnc:\
+
+" abbrevs
+abbrev uv repos/uservoice/app
+abbrev ng repos/uservoice/app/assets/javascripts/admin/angular
+abbrev m repos/metroid
+abbrev s repos/samus
+abbrev st repos/samus/test/javascripts
