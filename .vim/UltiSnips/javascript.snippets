@@ -1,0 +1,18 @@
+# Angular (by jeff)
+snippet inject
+var $1;
+beforeEach(inject(function(${1/([\w\$]+)/_$1_/g}) {
+	${1/([\w\$]+),?/$1 = _$1_;\n   /g}
+	$2
+}));
+endsnippet
+
+snippet module
+beforeEach(module('$1'));
+endsnippet
+
+snippet	describe
+describe('$1', function() {
+	$2
+});
+endsnippet
