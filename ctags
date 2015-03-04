@@ -2,6 +2,14 @@
 --exclude=.*\.svn.*
 --langdef=js
 --langmap=js:.js
+
+--regex-js=/\.controller\('([A-Za-z0-9._$]+)'/\1/c,ng-controller/
+--regex-js=/\.directive\('([A-Za-z0-9._$]+)'/\1/c,ng-directive/
+--regex-js=/\.filter\('([A-Za-z0-9._$]+)'/\1/c,ng-filter/
+--regex-js=/\.constant\('([A-Za-z0-9._$]+)'/\1/c,ng-constant/
+--regex-js=/\.service\('([A-Za-z0-9._$]+)'/\1/c,ng-service/
+--regex-js=/\.factory\('([A-Za-z0-9._$]+)'/\1/c,ng-factory/
+
 --regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*\{/\5/,object/
 --regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\5/,function/
 --regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*\[/\5/,array/
@@ -11,7 +19,6 @@
 --regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*=[ \t]*.+([,;=]|$)/\5/,variable/
 --regex-js=/(,|(;|^)[ \t]*(var|let|([A-Za-z_$][A-Za-z0-9_$.]+\.)*))[ \t]*([A-Za-z0-9_$]+)[ \t]*[ \t]*([,;]|$)/\5/,variable/
 --regex-js=/function[ \t]+([A-Za-z0-9_$]+)[ \t]*\([^)]*\)/\1/,function/
-
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\{/\2/,object/
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*function[ \t]*\(/\2/,function/
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*\[/\2/,array/
@@ -19,6 +26,15 @@
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*(true|false)/\2/,boolean/
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[0-9]+/\2/,number/
 --regex-js=/(,|^)[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[^=]+([,;]|$)/\2/,variable/
+
+--regex-JavaScript=/\.controller\('([A-Za-z0-9._$]+)'/\1/c,ng-controller/
+--regex-JavaScript=/\.directive\('([A-Za-z0-9._$]+)'/\1/c,ng-directive/
+--regex-JavaScript=/\.filter\('([A-Za-z0-9._$]+)'/\1/c,ng-filter/
+--regex-JavaScript=/\.constant\('([A-Za-z0-9._$]+)'/\1/c,ng-constant/
+--regex-JavaScript=/\.service\('([A-Za-z0-9._$]+)'/\1/c,ng-service/
+--regex-JavaScript=/\.factory\('([A-Za-z0-9._$]+)'/\1/c,ng-factory/
+--regex-JavaScript=/describe\('([ A-Za-z0-9._$]+)'/\1/c,ng-suite/
+--regex-JavaScript=/it\('([ A-Za-z0-9._$]+)'/\1/c,ng-test/
 
 --python-kinds=-i
 

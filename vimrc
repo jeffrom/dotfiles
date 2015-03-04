@@ -57,7 +57,7 @@ fun! SetJSOptions()
     map <buffer> <silent><leader>d :TernDef<CR>
     map <buffer> <silent><leader>R :TernRefs<CR>
     map <buffer> <silent>K :TernType<CR>
-    map <buffer> <C-]> :TernDef<CR>
+    " map <buffer> <C-]> :TernDef<CR>
     let javascript_ignore_javaScriptdoc = 1
     setlocal conceallevel=2 concealcursor=nc
     let g:syntax_js=['function']
@@ -493,8 +493,18 @@ let g:flow#enable = 0
 " set fillchars+=stl:\ ,stlnc:\
 
 " abbrevs
-abbrev uv repos/uservoice/app
-abbrev ng repos/uservoice/app/assets/javascripts/admin/angular
-abbrev m repos/metroid
-abbrev s repos/samus
-abbrev st repos/samus/test/javascripts
+" abbrev uv repos/uservoice/app
+" abbrev ng repos/uservoice/app/assets/javascripts/admin/angular
+" abbrev ngt repos/uservoice/test/javascripts
+" abbrev ngtmpl repos/uservoice/app/assets/angular_templates
+" abbrev sam repos/samus
+" abbrev samt repos/samus/test/javascripts
+" abbrev met repos/metroid
+
+
+" angular-vim
+let g:angular_source_directory = 'repos/uservoice/app/assets/javascripts/admin'
+let g:angular_test_directory = 'repos/uservoice/test/javascripts'
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1

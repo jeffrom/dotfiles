@@ -31,7 +31,9 @@
     recent = "!gitrecent"
     grep-refs = !sh -c 'git grep "$0" "$@" "$(git for-each-ref --format=\"%(refname)\"" refs/heads)'
 [push]
-    default = tracking
+	default = simple
+[pull]
+	default = simple
 
 [merge]
 	tool = diffconflicts

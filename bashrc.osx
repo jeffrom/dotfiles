@@ -90,7 +90,7 @@ fi
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+# alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -146,6 +146,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export UV_METROID_DIR="/Users/jeff/repos/metroid"
 export UV_RAILS_DIR="/Users/jeff/repos/uservoice"
 export UV_SAMUS_DIR="/Users/jeff/repos/samus"
+export UV_SILLYPUTTY_DIR="/Users/jeff/repos/sillyputty"
+export DBR_TEST_DSN="jeff@unix(/tmp/mysql.sock)/uservoice_test?charset=utf8&parseTime=true"
 
 eval "$(gulp --completion=bash)"
 
@@ -162,3 +164,6 @@ ssh() {
 
 # powerline-daemon -q
 # POWERLINE_BASH_CONTINUATION=1 POWERLINE_BASH_SELECT=1 source ~/repos/powerline/powerline/bindings/bash/powerline.sh
+
+
+source ~/.local/bin/bashmarks.sh
