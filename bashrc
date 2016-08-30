@@ -1,37 +1,13 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+export PATH=~/bin:$PATH
+export EDITOR=vim
+# export PAGER=vimpager
+export HISTCONTROL=ignoreboth:erasedups
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+PROMPT_DIRTRIM=3
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
+# os x color stuff
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -50,115 +26,86 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[31m\]$(__git_ps1)\[\033[00m\] \$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    # git branch on prompt stuff
+    if [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]]; then
+        . /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u \[\033[01;34m\]\w\[\033[00m\]\[\033[31m\]$(__git_ps1)\[\033[00m\] \$ '
+    fi
+
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+if [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ]]; then
+    . /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# show title when sshing
+settitle() {
+  printf "\033k$1\033\\"
+}
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+ssh() {
+  settitle "$*"
+  command ssh "$@"
+  settitle "bash"
+}
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+alias vless=vimpager
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-
-# env vars
-export ROOT=$HOME/code
-export PYTHONPATH=$ROOT/python:$ROOT/python/stubs:$HOME/repos
-export PYTHONSTARTUP=~/.pythonrc
-export NODE_PATH=~/tmp/doctorjs/narcissus/lib/:~/tmp/doctorjs/lib/jsctags:~/tmp/doctorjs/lib
-
-go=`which go`
-if [[ "$go" ]]; then
-    export GOPATH=$HOME/go
-    _goroot=`$go env GOROOT`
-
-    export PATH=$PATH:$_goroot/bin:$GOPATH/bin
-fi
-
+# golang
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 export PATH=$PATH:$HOME/bin
 
-export EDITOR=vi
-export SVN_MERGE=~/bin/mergewrap.py
-#export TERM=xterm-color
-export TERM=xterm-256color
-export GREP_OPTIONS="--exclude-dir=\.svn --exclude=TAGS --exclude=tags --exclude=*.swp"
+# ansible
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault-pass.txt
 
-#alias less=$HOME/bin/someless
-alias diff='diff -u'
-#alias git='git --no-pager'
+# npm completion
+source /usr/local/Cellar/node5/$(node --version | sed -e 's/^v//')/etc/bash_completion.d/npm
 
-# mail
-#MAIL=/var/spool/mail/`whoami` && export MAIL
-#
-## gnupg
-#ps cax | grep gpg-agent > /dev/null
-#if [ ! $? -eq 0 ]; then
-#    gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
-#fi
-#
-#_export_gpg_info() {
-#    if [ -f "${HOME}/.gpg-agent-info" ]; then
-#        . "${HOME}/.gpg-agent-info"
-#        export GPG_AGENT_INFO
-#        export SSH_AUTH_SOCK
-#        export SSH_AGENT_PID
-#    fi
-#
-#    if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
-#        echo export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS" >> $HOME/.gpg-agent-info
-#    fi
-#}
-#_export_gpg_info
-#
-#PROMPT_COMMAND=_export_gpg_info
-#
-##wrap mutt w/ gpg for password safety
-#alias mutt=$HOME/bin/wrapmutt
-#
-## hack for screen to work w/ gpgp
-#_ssh_auth_save() {
-#    ln -sf "$SSH_AUTH_SOCK" "$HOME/.screen/ssh-auth-sock.$HOSTNAME"
-#}
-#alias screen='_ssh_auth_save ; export HOSTNAME=$(hostname) ; screen'
+# added by travis gem
+[ -f /Users/jmartin/.travis/travis.sh ] && source /Users/jmartin/.travis/travis.sh
 
-# added by Anaconda 1.8.0 installer
-#export PATH="/home/jeff/anaconda/bin:$PATH"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# hub
+if which hub > /dev/null; then
+  alias git=hub
+fi
+# [ -f /usr/local/etc/bash_completion.d ] && source /usr/local/etc/bash_completion.d
+
+source ~/.local/bin/bashmarks.sh
+
+
+# Apps
+# THE RIGHT ONE
+export APP_ENV="development"
+
+
+PATH="/Users/jmartin/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/jmartin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/jmartin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/jmartin/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/jmartin/perl5"; export PERL_MM_OPT;
+
+man() {
+	env \
+		LESS_TERMCAP_md=$'\e[1;36m' \
+		LESS_TERMCAP_me=$'\e[0m' \
+		LESS_TERMCAP_se=$'\e[0m' \
+		LESS_TERMCAP_so=$'\e[1;44;92m' \
+		LESS_TERMCAP_ue=$'\e[0m' \
+		LESS_TERMCAP_us=$'\e[1;32m' \
+			man "$@"
+}
+
+random-str() {
+    cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
+}
+
+source .homebrew.sh

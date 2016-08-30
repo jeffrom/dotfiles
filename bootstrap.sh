@@ -1,4 +1,6 @@
 #!/bin/bash
+set +x
+set -e
 
 
 dryrun=""
@@ -153,7 +155,7 @@ git clone https://github.com/kien/ctrlp.vim.git               2> /dev/null
 git clone https://github.com/mikewest/vimroom.git             2> /dev/null
 git clone https://github.com/tpope/vim-rails.git              2> /dev/null
 git clone https://github.com/tpope/vim-bundler.git            2> /dev/null
-git clone https://github.com/itchyny/calendar.vim.git         2> /dev/null
+# git clone https://github.com/itchyny/calendar.vim.git         2> /dev/null
 git clone https://github.com/sjl/gundo.vim.git                2> /dev/null
 git clone https://github.com/tpope/vim-commentary.git         2> /dev/null
 git clone https://github.com/vim-scripts/greplace.vim.git     2> /dev/null
@@ -163,14 +165,23 @@ git clone https://github.com/honza/vim-snippets.git           2> /dev/null
 git clone https://github.com/fatih/vim-go.git                 2> /dev/null
 git clone https://github.com/majutsushi/tagbar.git            2> /dev/null
 git clone https://github.com/jiangmiao/auto-pairs.git         2> /dev/null
-git clone https://github.com/rking/ag.vim.git                 2> /dev/null
-git clone https://github.com/vshih/vim-make.git               2> /dev/null
+# git clone https://github.com/rking/ag.vim.git                 2> /dev/null
+# git clone https://github.com/vshih/vim-make.git               2> /dev/null
 git clone https://github.com/mtth/scratch.vim.git             2> /dev/null
 git clone git@github.com:facebook/vim-flow.git                2> /dev/null
-git clone git@github.com:burnettk/vim-angular.git             2> /dev/null
+git clone git@github.com:editorconfig/editorconfig-vim.git    2> /dev/null
+git clone git@github.com:vimoutliner/vimoutliner.git          2> /dev/null
+# git clone git@github.com:burnettk/vim-angular.git             2> /dev/null
 
-git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
-cd tern_for_vim
-npm install
-cd -
+# git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
+# cd tern_for_vim
+# npm install
+# cd -
 
+
+cd
+mkdir -p repos
+cd repos
+git clone git://github.com/huyng/bashmarks.git
+cd bashmarks
+make install
