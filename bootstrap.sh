@@ -1,6 +1,5 @@
 #!/bin/bash
-set +x
-set -e
+set -x
 
 
 dryrun=""
@@ -171,6 +170,7 @@ git clone https://github.com/mtth/scratch.vim.git             2> /dev/null
 git clone git@github.com:facebook/vim-flow.git                2> /dev/null
 git clone git@github.com:editorconfig/editorconfig-vim.git    2> /dev/null
 git clone git@github.com:vimoutliner/vimoutliner.git          2> /dev/null
+git clone git@github.com:nanotech/jellybeans.vim.git          2> /dev/null
 # git clone git@github.com:burnettk/vim-angular.git             2> /dev/null
 
 # git clone https://github.com/marijnh/tern_for_vim.git 2> /dev/null
