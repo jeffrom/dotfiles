@@ -1,5 +1,9 @@
 " slightly more minimal vimrc
 
+if has('python3')
+    silent! python3 1
+endif
+
 call pathogen#infect('bundle/{}')
 
 syntax enable
@@ -35,6 +39,10 @@ if has('persistent_undo')
     set undodir=~/.vim/backup
 endif
 
+set wildmenu
+" set wildmode=list:full
+set wildmode=list:longest
+
 " stay three lines from the bottom
 set scrolloff=3
 
@@ -42,7 +50,12 @@ let g:jellybeans_overrides = {
 \    'background': { 'guibg': '000000' },
 \}
 
+" let g:dues_contrast_dark = 'hard'
+
 colorscheme jellybeans
+" colorscheme dues
+
+hi QuickFixLine ctermbg=blue
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -58,12 +71,17 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skeleton.%:e
 " Don't delete trailing whitespace for these filetypes
 autocmd FileType snippets :let b:notrailing=1
 
-autocmd BufRead,BufNewFile *.json set filetype=javascript
+" autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.html set filetype=html
 autocmd BufRead,BufNewFile .jshintrc set filetype=javascript
 autocmd BufRead,BufNewFile .sgconf set filetype=yaml
+autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
+autocmd BufRead,BufNewFile *.jenkinsfile set filetype=groovy
+autocmd BufRead,BufNewFile Jenkinsfile.* set filetype=groovy
+autocmd BufRead,BufNewFile mix.lock set filetype=elixir
 
-autocmd FileType html,javascript,mustache,stylus,typescript,ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType html,javascript,mustache,stylus,typescript,ruby,groovy,yaml,qtpl setlocal shiftwidth=2 tabstop=2
+autocmd FileType php setlocal commentstring=//\ %s
 
 " Delete trailing whitespace on save
 fun! StripTrailingWhitespace()
@@ -105,7 +123,10 @@ vnoremap <silent> <Leader>a :Align<CR>
 
 " spell check
 map <silent> <leader>s :setlocal spell! spell? spelllang=en_us<CR>
+
 map <silent> <leader>p :set invpaste paste?<CR>
+map <silent> <leader><tab> :setlocal et! et?<CR>
+map <silent> <leader>d :Gdiff<CR>
 
 " quote selection/word under cursor
 map <silent> <leader>'W ciW'<C-R>"'<ESC>
@@ -134,6 +155,7 @@ command! E Explore
 set wildignore+=public/assets/**,build/**,vendor/plugins/**,vendor/linked_gems/**,vendor/gems/**,vendor/rails/**,vendor/ruby/**,vendor/cache/**,Libraries/**,coverage/**
 let g:ctrlp_max_height=20
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files . -co --exclude-standard']
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v(\.git|\.yardoc|log|tmp)$',
   \ 'file': '\v\.(so|dat|DS_Store|png|gif|jpg|jpeg)$'
@@ -192,7 +214,9 @@ let g:syntastic_html_checkers=['']
 " let g:syntastic_javascript_checkers = ['']
 " let g:syntastic_typescript_checkers = ['tsc', 'tslint']
 let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_typescript_tslint_args = "--config /Users/jmartin/repos/sg-frontend/tslint.json"
+" let g:syntastic_typescript_tslint_args = "--config /Users/jmartin/repos/sg-frontend/tslint.json"
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_args = "--config /Users/jeff/repos/tpt-frontend/.eslintrc"
 
 " typescript
 let g:typescript_compiler_options = '--outFile /dev/null --experimentalDecorators'
@@ -226,6 +250,7 @@ au FileType go nmap <leader>R <Plug>(go-referrers)
 au FileType go nmap <leader>i <Plug>(go-imports)
 au FileType go nmap <leader>T <Plug>(go-info)
 au FileType go nmap <leader>m <Plug>(go-implements)
+au FileType go nmap <leader>e <Plug>(go-iferr)
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -234,13 +259,15 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" let g:go_fmt_command = "goimports"
-let g:go_fmt_experimental = 1
+let g:go_fmt_command = "goimports"
+" let g:go_fmt_experimental = 1
+let g:go_test_prepend_name = 1
 
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_go_checkers = ['gometalinter']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_go_checkers = ['govet', 'errcheck']
+" let g:syntastic_go_checkers = ['gometalinter']
 let g:syntastic_go_gometalinter_args = "--fast --disable='goconst' --disable='dupl' --cyclo-over=20"
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 nmap <silent> <F7> :SyntasticCheck<CR>
 
 " clang-format
@@ -256,8 +283,74 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:used_javascript_libs = 'angularjs,angularuirouter,chai,underscore,jquery'
 
 " abbrevs
-abbrev goww go/src/github.com/WeConnect
+abbrev tptf repos/tpt-frontend
+abbrev gojm ~/go/src/github.com/jeffrom
+abbrev gotpt ~/go/src/github.com/TeachersPayTeachers
+abbrev tptapi repos/api/lib
 
 " vimoutliner
 au FileType votl,outliner setlocal shiftwidth=2 tabstop=2
 au FileType outliner setlocal ft=votl
+
+" fzf
+set rtp+=/usr/local/opt/fzf
+let $FZF_DEFAULT_OPTS = '--inline-info'
+nnoremap <silent> <c-p> :Files <C-R>=ProjectRootGuess()<CR><CR>
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).' '.ProjectRootGuess().'| tr -d "\017"', 1, <bang>0)
+
+" vrc
+let g:vrc_curl_opts = {
+            \ '-i': '',
+            \ '--insecure': '',
+            \}
+
+autocmd BufRead,BufNewFile doc/tpt/curls.rest let b:vrc_header_content_type = 'application/graphql'
+
+" rust
+let g:racer_cmd = "/Users/jeff/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap <silent> <leader>f :RustFmt<CR>
+au FileType rust nmap <C-]> <Plug>(rust-def)
+au FileType rust nmap K <Plug>(rust-doc)
+let g:rustfmt_autosave = 1
+
+" notational velocity
+let g:nv_search_paths = ['~/notes']
+nnoremap <silent> <leader>n :NV<CR>
+
+au FileType typescript nmap <leader>f :Prettier<CR>
+
+" set statusline+=%{FugitiveStatusline()}
+
+" coc.nvim
+" set updatetime=300
+
+" Better display for messages
+" set cmdheight=2
+
+" don't give |ins-completion-menu| messages.
+" set shortmess+=c
+
+" always show signcolumns
+" set signcolumn=yes
+
+" au FileType typescript nmap <C-]> <Plug>(coc-definition)
+" au FileType typescript nmap K :call <SID>show_documentation()<CR>
+" au FileType typescript nmap <silent> <leader>R <Plug>(coc-references)
+" au FileType typescript nmap <silent> gt <Plug>(coc-type-definition)
+" au FileType typescript nmap <leader>rn <Plug>(coc-rename)
+" au FileType typescript.tsx nmap <C-]> <Plug>(coc-definition)
+" au FileType typescript.tsx nmap K :call <SID>show_documentation()<CR>
+" au FileType typescript.tsx nmap <silent> <leader>R <Plug>(coc-references)
+" au FileType typescript.tsx nmap <silent> gt <Plug>(coc-type-definition)
+" au FileType typescript.tsx nmap <leader>rn <Plug>(coc-rename)
+
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+
+

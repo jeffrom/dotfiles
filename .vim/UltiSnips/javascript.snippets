@@ -12,7 +12,13 @@ beforeEach(module('$1'));
 endsnippet
 
 snippet	describe
-describe('$1', function() {
+describe('$1', () => {
 	$2
-});
+})
+endsnippet
+
+snippet	it
+it('$1', () => {
+	$2
+})
 endsnippet
